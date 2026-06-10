@@ -1,0 +1,25 @@
+name: Build manuel Nginx
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Vérifier la présence des fichiers
+        run: |
+          test -f Dockerfile
+          test -f nginx.conf
+          test -f index.html
+          test -f background.png
+
+      - name: Construire l'image Docker
+        run: docker build -t macron-nginx .
+
+      - name: Tester la configuration Nginx
+        run: docker run --rm macron-nginx nginx -t
