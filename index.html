@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MACRON = GARGAMEL - Le Voleur de la Nation</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color:#f0e6d3;
+    background:
+        linear-gradient(rgba(10,5,20,0.85), rgba(30,10,15,0.85)),
+        url("background.png");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    min-height:100vh;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 20px 40px;
+    position:relative;
+}
+
+.hero h1{
+    font-size:5rem;
+    color:#c41e3a;
+    text-shadow:0 0 30px #ff0000, 0 0 60px #8b0000, 2px 2px 0 #000;
+    letter-spacing:3px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{text-shadow:0 0 30px #ff0000,0 0 60px #8b0000}
+    50%{text-shadow:0 0 60px #ff4444,0 0 120px #ff0000}
+}
+
+.hero .subtitle{
+    font-size:2rem;
+    color:#ffd700;
+    margin-top:10px;
+    text-shadow:0 0 20px #ffcc00;
+    font-style:italic;
+}
+
+.hero .tagline{
+    font-size:1.4rem;
+    color:#ff6b6b;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding-bottom:40px;
+}
+
+.card{
+    background:rgba(20,5,10,0.8);
+    border:2px solid rgba(196,30,58,0.4);
+    border-radius:12px;
+    padding:35px;
+    margin-bottom:25px;
+    backdrop-filter:blur(5px);
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg,transparent,#c41e3a,transparent);
+}
+
+.card h2{
+    color:#ffd700;
+    font-size:2rem;
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(255,215,0,0.5);
+}
+
+.card h3{
+    color:#ff6b6b;
+    font-size:1.4rem;
+    margin-bottom:12px;
+    margin-top:20px;
+}
+
+.card p{
+    line-height:1.9;
+    font-size:1.15rem;
+    margin-bottom:15px;
+}
+
+.card ul{
+    list-style:none;
+    padding:0;
+}
+
+.card ul li{
+    padding:8px 0 8px 30px;
+    position:relative;
+    font-size:1.1rem;
+    line-height:1.6;
+}
+
+.card ul li::before{
+    content:'💀';
+    position:absolute;
+    left:0;
+}
+
+.highlight{
+    color:#ff4444;
+    font-weight:bold;
+}
+
+.golden{
+    color:#ffd700;
+    font-weight:bold;
+}
+
+.quote{
+    font-style:italic;
+    text-align:center;
+    font-size:1.8rem;
+    color:#ffd700;
+    margin:30px 0;
+    text-shadow:0 0 15px rgba(255,215,0,0.4);
+    padding:20px;
+    border-left:4px solid #ffd700;
+    border-right:4px solid #ffd700;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.feat{
+    background:rgba(196,30,58,0.15);
+    border:1px solid rgba(196,30,58,0.3);
+    border-radius:10px;
+    padding:25px;
+    transition:transform 0.3s,box-shadow 0.3s;
+}
+
+.feat:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 30px rgba(196,30,58,0.3);
+}
+
+.feat h3{
+    color:#ffd700;
+    font-size:1.3rem;
+    margin-bottom:10px;
+}
+
+.feat p{
+    font-size:1rem;
+    line-height:1.7;
+}
+
+.comparison{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-top:20px;
+}
+
+.comparison .col{
+    background:rgba(0,0,0,0.4);
+    border-radius:10px;
+    padding:25px;
+}
+
+.comparison .col h3{
+    text-align:center;
+    font-size:1.5rem;
+}
+
+.comparison .col.gargamel{
+    border:1px solid rgba(196,30,58,0.5);
+}
+
+.comparison .col.macron{
+    border:1px solid rgba(255,215,0,0.5);
+}
+
+.big-number{
+    font-size:4rem;
+    font-weight:bold;
+    color:#c41e3a;
+    text-align:center;
+    text-shadow:0 0 20px rgba(196,30,58,0.6);
+    margin:15px 0;
+}
+
+.counter{
+    text-align:center;
+    font-size:1rem;
+    color:#aaa;
+    margin-top:-10px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    background:rgba(10,0,5,0.9);
+    color:#666;
+    border-top:2px solid rgba(196,30,58,0.3);
+    font-size:0.9rem;
+}
+
+footer .disclaimer{
+    margin-top:15px;
+    font-style:italic;
+    color:#888;
+    font-size:0.85rem;
+}
+
+.blood-drip{
+    position:absolute;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#c41e3a;
+    font-size:2rem;
+    animation:drip 3s infinite;
+}
+
+@keyframes drip{
+    0%,100%{opacity:0.7;transform:translateX(-50%) translateY(0)}
+    50%{opacity:1;transform:translateX(-50%) translateY(5px)}
+}
+
+@media(max-width:768px){
+    .hero h1{font-size:2.5rem}
+    .comparison{grid-template-columns:1fr}
+    .card{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+    <h1>MACRONMEL</h1>
+    <p class="subtitle">Le Gargamel de la République</p>
+    <p class="tagline">"Je vous vole votre argent... pour votre bien, évidemment."</p>
+    <div class="blood-drip">🩸</div>
+</header>
+
+<div class="container">
+
+    <!-- SECTION 1 : LE VOL -->
+    <div class="card">
+        <h2>💰 LE GRAND VOL ORGANISÉ</h2>
+        <p>
+            Comme <span class="golden">Gargamel</span> qui ne pense qu'à capturer les Schtroumpfs pour leur voler leur or,
+            <span class="highlight">Macron</span> ne pense qu'à une chose : <span class="highlight">vider vos poches</span>.
+            Impôts, taxes, prélèvements, contributions, redevances, cotisations... le génie de la
+            <span class="golden">marmite fiscale</span> a un talent inégalé pour inventer des mots nouveaux
+            qui signifient tous la même chose : <span class="highlight">DONNEZ VOTRE FRIC.</span>
+        </p>
+        <p>
+            Gargamel voulait transformer les Schtroumpfs en or. Macron, lui, a réussi l'exploit inverse : 
+            <span class="highlight">transformer l'or des Français en poudre de perlimpinpin budgétaire.</span>
+            Résultat ? 3 000 milliards de dettes et des services publics en lambeaux. GG le sorcier.
+        </p>
+
+        <div class="big-number">3 228</div>
+        <div class="counter">MILLIARDS D'EUROS DE DETTE PUBLIQUE</div>
+        <p style="text-align:center;margin-top:10px;font-size:0.9rem;color:#ff6b6b;">
+            Soit environ <span class="golden">48 000€</span> par Français, nourrisson compris.
+            Gargamel ne faisait pas mieux.
+        </p>
+    </div>
+
+    <!-- SECTION 2 : LES PARALLÈLES -->
+    <div class="card">
+        <h2>🔮 MÊME COMBAT, MÊME MARMITE</h2>
+
+        <div class="comparison">
+            <div class="col gargamel">
+                <h3>🧙 GARGAMEL</h3>
+                <ul>
+                    <li>Poursuit les Schtroumpfs pour leur <span class="golden">or</span></li>
+                    <li>Vit dans une masure délabrée</li>
+                    <li>Prépare des potions foireuses</li>
+                    <li>Seul son chat Azraël le supporte</li>
+                    <li>Échoue toujours à la fin</li>
+                    <li>Au moins, il est honnête sur ses intentions</li>
+                </ul>
+            </div>
+            <div class="col macron">
+                <h3>👔 MACRON</h3>
+                <ul>
+                    <li>Poursuit les citoyens pour leur <span class="golden">argent</span></li>
+                    <li>Vit à l'Élysée, rénové aux frais du contribuable</li>
+                    <li>Prépare des réformes foireuses</li>
+                    <li>Seule sa femme le supporte (et encore)</li>
+                    <li>Échoue toujours à la fin</li>
+                    <li>Vous dit que c'est <span class="highlight">"pour votre bien"</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3 : TECHNIQUES DE VOL -->
+    <div class="card">
+        <h2>🪄 LES POTIONS MAGIQUES DU VOL LÉGAL</h2>
+        <p>
+            Gargamel avait ses grimoires. Macron a le <span class="golden">Code Général des Impôts</span>.
+            Même principe, efficacité décuplée par l'administration française.
+        </p>
+
+        <div class="grid">
+            <div class="feat">
+                <h3>🧪 La Potion CSG</h3>
+                <p>
+                    La Contribution Sociale Généralisée : un nom qui claque, un prélèvement
+                    qui <span class="highlight">vous pique 9,2%</span> sur tout ce que vous gagnez.
+                    Même Gargamel n'aurait pas osé appeler un vol une "contribution".
+                </p>
+            </div>
+            <div class="feat">
+                <h3>📜 Le Grimoire URSSAF</h3>
+                <p>
+                    Des milliers de pages que personne ne comprend, des cotisations
+                    qui se superposent, s'additionnent et se multiplient. Le <span class="highlight">cauchemar
+                    de tout indépendant</span>. Gargamel est admiratif.
+                </p>
+            </div>
+            <div class="feat">
+                <h3>🎯 La Formule TVA</h3>
+                <p>
+                    20% sur (presque) tout ce que vous achetez. Le génie de la chose ?
+                    Vous ne la voyez même pas. <span class="highlight">L'impôt invisible</span> qui
+                    fait grossir la marmite sans que personne ne crie. Machiavélique.
+                </p>
+            </div>
+            <div class="feat">
+                <h3>🏰 La Taxe Foncière</h3>
+                <p>
+                    Vous possédez un bout de terre ? Payez. Chaque année. Pour toujours.
+                    Gargamel appelait ça un <span class="highlight">racket</span>. Macron appelle ça
+                    la "contribution au bien commun". Nuance.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4 : LA CÉLÈBRE CITATION -->
+    <div class="card">
+        <div class="quote">
+            « Je traverse la rue, je vous trouve 300 euros. »<br>
+            <span style="font-size:1.2rem;color:#c41e3a;">— Et il vous les a trouvés ? Non, il vous les a PRIS.</span>
+        </div>
+    </div>
+
+    <!-- SECTION 5 : LE CHÂTEAU -->
+    <div class="card">
+        <h2>🏰 LE CHÂTEAU DE MACRONMEL</h2>
+        <p>
+            Pendant que Gargamel vivait dans une bicoque insalubre, Macronmel, lui,
+            s'est offert un palais. <span class="highlight">L'Élysée</span> : 365 pièces, 
+            des lustres en cristal, une cave à vins millésimés, des jardins à la française.
+            Tout ça payé par qui ? <span class="golden">VOUS.</span>
+        </p>
+        <p>
+            Et quand le petit peuple ose se plaindre, la réponse fuse : 
+            <span class="highlight">"Qu'ils viennent me chercher !"</span> 
+            Ou encore mieux : <span class="highlight">"Je ne céderai rien."</span>
+        </p>
+        <p>
+            Gargamel au moins, quand il perdait, il gueulait un bon coup et il rentrait chez lui.
+            Macron, lui, <span class="highlight">fait passer un 49.3</span> et impose sa volonté 
+            pendant que vous dormez. La magie noire démocratique.
+        </p>
+    </div>
+
+    <!-- SECTION 6 : LE BILAN -->
+    <div class="card">
+        <h2>⚰️ LE BILAN DU SORCIER</h2>
+        <ul>
+            <li>
+                <span class="golden">Retraites :</span> 
+                « Il faut travailler plus longtemps ! » — dit-il depuis son palais 
+                où il ne travaillera jamais jusqu'à 64 ans.
+            </li>
+            <li>
+                <span class="golden">Santé :</span> 
+                Hôpitaux en ruine, soignants en burn-out, mais les milliards 
+                sont partis... ailleurs. La marmite, probablement.
+            </li>
+            <li>
+                <span class="golden">Éducation :</span> 
+                Des classes surchargées, des profs sous-payés. Mais rassurez-vous, 
+                le Conseil Constitutionnel a validé la réforme.
+            </li>
+            <li>
+                <span class="golden">Énergie :</span> 
+                Votre facture explose, EDF est démantelé, 
+                mais Total fait des bénéfices records. Le sortilège du ruissellement, sans doute.
+            </li>
+            <li>
+                <span class="golden">Justice :</span> 
+                Coupures budgétaires en série. Logique : moins de magistrats = 
+                moins de risques pour les copains. Gargamel approuve.
+            </li>
+        </ul>
+    </div>
+
+    <!-- SECTION 7 : LA VÉRITÉ -->
+    <div class="card">
+        <h2>🐍 LE CHAT AZRAËL DEVIENT ALEXIS KOHLER</h2>
+        <p>
+            Gargamel avait Azraël, son chat fidèle et fourbe. Macron a 
+            <span class="highlight">Alexis Kohler</span>, le secrétaire général de l'Élysée, 
+            surnommé « le vice-président ». Même regard froid, même loyauté suspecte, 
+            même capacité à apparaître et disparaître dans l'ombre des cabinets ministériels.
+            Il ne miaule pas, mais il murmure à l'oreille du sorcier.
+        </p>
+        <p>
+            Pendant qu'Azraël chassait les souris, Kohler chasse 
+            <span class="highlight">les conflits d'intérêts</span> — les siens.
+            Relaxé pour prescription. La magie opère.
+        </p>
+    </div>
+
+    <!-- SECTION 8 : CONCLUSION -->
+    <div class="card" style="text-align:center;">
+        <h2>🏴‍☠️ LE PEUPLE N'EST PAS UN SCHTROUMPF</h2>
+        <p style="font-size:1.3rem;">
+            Gargamel a passé 40 ans à courir après les Schtroumpfs sans jamais en attraper un seul.<br>
+            Macron, lui, a réussi l'exploit en un seul mandat : 
+            <span class="highlight">attraper 68 millions de Français par le portefeuille.</span>
+        </p>
+        <p style="font-size:1.5rem;margin-top:25px;color:#ffd700;">
+            LA SEULE DIFFÉRENCE ? GARGAMEL ÉTAIT UN DESSIN ANIMÉ.<br>
+            MACRON, LUI, EST BIEN RÉEL. ET IL EST LÀ POUR 5 ANS ENCORE.
+        </p>
+        <p style="margin-top:25px;color:#c41e3a;font-size:1.8rem;">
+            🐀 RÉVEILLEZ-VOUS. 🐀
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    <p>Projet Nginx/Docker • Site satirique • Aucun Schtroumpf n'a été maltraité</p>
+    <p class="disclaimer">
+        ⚠️ Ceci est une satire politique. Toute ressemblance avec des personnes existantes 
+        est absolument volontaire et assumée. Si vous êtes choqué, c'est que c'est vrai. ⚠️
+    </p>
+</footer>
+
+</body>
+</html>
