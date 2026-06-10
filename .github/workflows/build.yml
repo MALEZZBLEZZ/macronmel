@@ -1,25 +1,57 @@
-name: Build manuel Nginx
+name: CI Nginx Docker
 
 on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
 
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
 
-      - name: Vérifier la présence des fichiers
+      - name: Vérifier la présence des fichiers essentiels
         run: |
           test -f Dockerfile
           test -f nginx.conf
           test -f index.html
           test -f background.png
 
+      - name: Vérifier l'absence de secrets simples
+        run: |
+          ! grep -RniE "password|passwd|secret|token|api_key|apikey|private_key" . \
+            --exclude-dir=.git \
+            --exclude=README.md
+
       - name: Construire l'image Docker
         run: docker build -t macron-nginx .
 
       - name: Tester la configuration Nginx
         run: docker run --rm macron-nginx nginx -t
+
+      - name: Démarrer le conteneur
+        run: docker run -d --name macron-nginx-test -p 8080:80 macron-nginx
+
+      - name: Tester la réponse HTTP
+        run: |
+          sleep 3
+          curl -f http://localhost:8080
+
+      - name: Tester endpoint /health
+        run: |
+          curl -f http://localhost:8080/health
+
+      - name: Nettoyer le conteneur
+        if: always()
+        run: |
+          docker stop macron-nginx-test || true
+          docker rm macron-nginx-test || true
